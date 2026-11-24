@@ -1,0 +1,9 @@
+MANAGER_SDK_ORIGIN=https://manager.example.com
+MANAGER_SDK_USER=owner
+MANAGER_SDK_PASSWORD_FILE=/etc/manager-sdk/password
+MANAGER_SDK_HOME=/var/lib/manager-sdk
+PORT=8787
+ANDROID_HOME=/opt/android-sdk
+ANDROID_NDK_HOME=/opt/android-sdk/ndk/REPLACE_WITH_REVIEWED_VERSION
+# Comma-separated framework:commit entries (reviewed SHA only)
+MANAGER_SDK_REVIEWED_COMMITS=

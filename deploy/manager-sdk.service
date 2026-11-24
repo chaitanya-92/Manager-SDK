@@ -1,0 +1,19 @@
+[Unit]
+Description=Manager SDK private cloud workspace
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=manager-sdk
+Group=manager-sdk
+WorkingDirectory=/opt/manager-sdk
+EnvironmentFile=/etc/manager-sdk/config
+ExecStart=/usr/bin/node /opt/manager-sdk/worker/cloud-server.mjs
+Restart=on-failure
+RestartSec=5
+KillMode=control-group
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+[Install]
+WantedBy=multi-user.target

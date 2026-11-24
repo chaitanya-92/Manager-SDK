@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "node --test"
+    "test": "node --test",
+    "start:cloud": "node worker/cloud-server.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",
