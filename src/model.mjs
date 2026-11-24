@@ -13,7 +13,7 @@ export function manifest(c) {
 }
 export function terminalCommand(input,c) {
  switch(input.trim().toLowerCase()){
- case 'help':return ['help · check · plan · status · clear','Commands are workspace actions, not shell execution.'];
+ case 'help':return ['help · check · plan · status · releases · clear','Commands are workspace actions, not shell execution.'];
  case 'check': {const e=validate(c);return e.length?e:['Configuration valid. No APK or device tests have run.'];}
  case 'plan':return ['1. Review pinned source and licensing.','2. Apply supported branding and signing configuration.','3. Build using reviewed upstream workflow.','4. Verify APK and compatible installed engine on authorized device.'];
  case 'status':return ['Workspace ready. Build worker not connected.','APK: unbuilt | Engine: unverified | Root: unverified'];
