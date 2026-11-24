@@ -1,0 +1,9 @@
+.gcloudignore
+.git
+node_modules/
+dist/
+.env*
+*.jks
+*.keystore
+*.p12
+.manager-sdk/

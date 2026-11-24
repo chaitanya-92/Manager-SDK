@@ -1,0 +1,12 @@
+# Builds and tests the web application, not an Android APK.
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/manager-sdk/web:$BUILD_ID', '.']
+images:
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/manager-sdk/web:$BUILD_ID'
+substitutions:
+  _REGION: us-central1
+options:
+  machineType: E2_STANDARD_2
+  logging: CLOUD_LOGGING_ONLY
+timeout: 900s

@@ -26,3 +26,7 @@ Run the Vite development server on an x86_64 Linux machine with JDK 21, Git, Pyt
 ## Private cloud mode
 
 Use `npm run start:cloud` after configuring the dedicated Linux worker and building the frontend. See [deployment guide](docs/cloud-deployment.md). The server persists job history and does not depend on your browser or Mac. Cloud mode uses reviewed source revisions and local workspaces instead of GitHub forks. Native APK builds and device verification remain unvalidated.
+
+## Google Cloud workspace preview
+
+See [Google Cloud deployment](docs/google-cloud.md) for the private Cloud Run UI and Cloud Build container verification pipeline. This does not enable the Android build worker or produce an APK. The existing dedicated Linux worker remains a separate deployment option.
