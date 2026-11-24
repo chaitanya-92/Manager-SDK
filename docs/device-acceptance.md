@@ -1,0 +1,3 @@
+# Device acceptance
+
+A signature-verified APK is not proof of manager authorization or root. On an owned or explicitly authorized test device with a compatible, already installed engine, use the documented upstream manager authorization procedure. Do not modify trust checks or bypass verified boot. Record the device model, Android version, kernel release, engine version, exact APK SHA-256, and observed manager status. Verify the manager can administer its compatible engine using the documented UI, and grant/revoke root for a benign test app only with the owner present. Recheck after reboot. A failed or missing test remains unverified. No automated device action or fabricated success is permitted.
