@@ -22,3 +22,7 @@ The local build worker is implemented but has not yet been validated against a c
 ## Local build worker
 
 Run the Vite development server on an x86_64 Linux machine with JDK 21, Git, Python 3 (with json-with-comments installed), Rust, Android SDK/build-tools and the upstream-required NDK. For Next, install Docker, clang and the reviewed cross tool. Set ANDROID_HOME and ANDROID_NDK_HOME. Optional upstream forking needs authenticated gh CLI. Do not expose this loopback development server to the public internet. The workspace on macOS remains usable for configuration and inspection, but native builds are disabled there. Client signing keys are stored under ~/.manager-sdk/keys with restricted permissions; back them up securely. Only use trusted reviewed source revisions. The worker signs the finished APK locally, verifies its signature and metadata, and exposes a download only on success. Jobs are session-local; output remains on disk. The deterministic failure analyzer suggests fixes; it does not use AI or modify arbitrary code. Device acceptance remains manual: see docs/device-acceptance.md. No LKM delivery or root concealment is provided.
+
+## Private cloud mode
+
+Use `npm run start:cloud` after configuring the dedicated Linux worker and building the frontend. See [deployment guide](docs/cloud-deployment.md). The server persists job history and does not depend on your browser or Mac. Cloud mode uses reviewed source revisions and local workspaces instead of GitHub forks. Native APK builds and device verification remain unvalidated.
