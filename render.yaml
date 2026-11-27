@@ -4,9 +4,11 @@ services:
     runtime: node
     plan: free
     buildCommand: npm install --no-audit --no-fund && npm test && npm run build
-    startCommand: npm run start:render
+    startCommand: node worker/hosted-start.mjs
     healthCheckPath: /healthz
     envVars:
+      - key: MANAGER_SDK_HOST
+        value: render
       - key: NODE_VERSION
         value: 22.16.0
       - key: MANAGER_SDK_USER

@@ -11,3 +11,7 @@ Render hosts the private UI and project API. Supabase persists project configura
 ## Remaining acceptance gates
 
 Actual custom APK compilation requires a validated Android runner, independent signing boundary and authorized device testing. Do not label the service an end-to-end Android build factory or claim root until these gates have been tested. A regular APK cannot by itself root a stock device.
+
+## Troubleshooting: Google Cloud preview on Render
+
+If the UI says Google Cloud preview, the wrong server was started. The Docker image now detects Render and uses the private Render API; it refuses to fall back to preview when credentials are missing. In Render Environment, configure MANAGER_SDK_USER=owner, a random MANAGER_SDK_PASSWORD of at least 24 characters, SUPABASE_URL and SUPABASE_SERVER_KEY. Set MANAGER_SDK_HOST=render. The exact HTTPS origin is taken from RENDER_EXTERNAL_URL unless overridden by MANAGER_SDK_ORIGIN. Redeploy latest main. For a native Node service use start command node worker/hosted-start.mjs. For Docker use the image default CMD; remove any override that launches gcp-web.mjs. After sign-in, /api/factory/status should report mode render and projectsAvailable true. /healthz alone does not prove the project database works. Verify by saving and reopening a project. Android compilation remains disconnected.

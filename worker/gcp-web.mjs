@@ -20,4 +20,4 @@ export function createWorkspaceServer(dist=resolve('dist')){
   const stream=createReadStream(path);stream.on('error',()=>res.destroy());stream.pipe(res);
  });
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){const port=Number(process.env.PORT||8080);createWorkspaceServer().listen(port,'0.0.0.0',()=>console.log('Workspace preview listening on '+port));}
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){if(process.env.RENDER==='true'||process.env.RENDER_EXTERNAL_URL||process.env.MANAGER_SDK_HOST==='render')throw new Error('Use node worker/hosted-start.mjs on Render; preview disabled.');const port=Number(process.env.PORT||8080);createWorkspaceServer().listen(port,'0.0.0.0',()=>console.log('Workspace preview listening on '+port));}

@@ -8,7 +8,8 @@ FROM node:22-bookworm-slim
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build --chown=node:node /app/dist ./dist
-COPY --chown=node:node worker/gcp-web.mjs ./worker/gcp-web.mjs
+COPY --chown=node:node worker/gcp-web.mjs worker/render-web.mjs worker/project-store.mjs worker/hosted-start.mjs ./worker/
+COPY --chown=node:node src/model.mjs ./src/model.mjs
 USER node
 EXPOSE 8080
-CMD ["node","worker/gcp-web.mjs"]
+CMD ["node","worker/hosted-start.mjs"]
