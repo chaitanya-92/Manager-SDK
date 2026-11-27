@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: manager-sdk
+    runtime: node
+    plan: free
+    buildCommand: npm install --no-audit --no-fund && npm test && npm run build
+    startCommand: npm run start:render
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: MANAGER_SDK_USER
+        value: owner
+      - key: MANAGER_SDK_PASSWORD
+        generateValue: true
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVER_KEY
+        sync: false

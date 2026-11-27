@@ -1,0 +1,8 @@
+import React,{useEffect,useState} from 'react';import {Save,FolderOpen,RefreshCw} from 'lucide-react';
+export default function SavedProjects({config,onLoad,enabled}){
+ const [projects,setProjects]=useState([]),[busy,setBusy]=useState(false),[message,setMessage]=useState('');
+ async function refresh(){setBusy(true);setMessage('');try{const r=await fetch('/api/projects');const d=await r.json();if(!r.ok)throw new Error(d.error);setProjects(d.projects||[]);}catch(e){setMessage(e.message);}finally{setBusy(false);}}
+ useEffect(()=>{if(enabled)refresh();},[enabled]);
+ async function save(){setBusy(true);setMessage('');try{const r=await fetch('/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(config)});const d=await r.json();if(!r.ok)throw new Error(d.error);setProjects(p=>[d.project,...p].slice(0,50));setMessage('Project configuration saved. No APK built.');}catch(e){setMessage(e.message);}finally{setBusy(false);}}
+ return <section className="panel fields mt-4"><h2>Client projects</h2>{!enabled?<small>Private database not configured.</small>:<><div className="flex flex-wrap gap-2"><button className="btn btn-sm btn-primary" disabled={busy} onClick={save}><Save size={14}/> Save configuration</button><button className="btn btn-sm" disabled={busy} onClick={refresh}><RefreshCw size={14}/> Refresh</button></div>{message&&<p role="status">{message}</p>}{!projects.length&&<small>No saved projects yet.</small>}{projects.map(p=><button className="btn btn-ghost justify-start text-left" key={p.id} disabled={busy} onClick={()=>onLoad(p.config)}><FolderOpen size={15}/><span className="truncate">{p.config.name} · {p.config.framework}</span></button>)}</>}</section>
+}

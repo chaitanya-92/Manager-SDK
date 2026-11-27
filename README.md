@@ -30,3 +30,7 @@ Use `npm run start:cloud` after configuring the dedicated Linux worker and build
 ## Google Cloud workspace preview
 
 See [Google Cloud deployment](docs/google-cloud.md) for the private Cloud Run UI and Cloud Build container verification pipeline. This does not enable the Android build worker or produce an APK. The existing dedicated Linux worker remains a separate deployment option.
+
+## Card-free hosted workspace
+
+See [Render + Supabase setup](docs/card-free-cloud.md). Private owner access and persistent project manifests are implemented; CircleCI verifies the web application. Android builds are not connected to this deployment.

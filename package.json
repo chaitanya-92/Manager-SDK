@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "test": "node --test",
-    "start:cloud": "node worker/cloud-server.mjs"
+    "start:cloud": "node worker/cloud-server.mjs",
+    "start:render": "node worker/render-web.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",
